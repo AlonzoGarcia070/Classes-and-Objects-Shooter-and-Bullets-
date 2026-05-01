@@ -18,7 +18,7 @@ def playing_area():
     pen.end_fill()
     
 class Player(Turtle):
-    def __init__(self, x, y, color, screen, right_key, left_key):
+    def __init__(self, x, y, color, screen, right_key, left_key, fire_key):
         super().__init__()
         self.ht()
         self.speed(0)
@@ -28,10 +28,12 @@ class Player(Turtle):
         self.setheading(90)
         self.shape("turtle")
         self.bullets = []
+        self.color = color
         self.alive = True
         self.st()
         screen.onkeypress(self.turn_left, left_key)
         screen.onkeypress(self.turn_right, right_key)
+        screen.onkey(self.fire, fire_key)
 
     def turn_left(self):
         self.left(10)
