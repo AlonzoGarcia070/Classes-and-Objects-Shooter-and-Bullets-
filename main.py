@@ -74,8 +74,8 @@ screen.listen()
 
 playing_area()
 
-p1 = Player(-100, 0, "red",screen, "d", "a","w","s")
-p2 = Player(100,0,"blue",screen, "Right","Left","up","down")
+p1 = Player(-100,0,"red",screen,"d","a", fire_key)
+p2 = Player(100,0,"blue",screen,"Right","Left")
 
 while p1.alive and p2.alive:
     p1.move()
