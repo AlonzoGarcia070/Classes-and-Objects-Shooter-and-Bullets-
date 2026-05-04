@@ -20,6 +20,7 @@ def playing_area():
 class Player(Turtle):
     def __init__(self, x, y, color, screen, right_key, left_key, fire_key):
         super().__init__()
+        self.health = 3
         self.ht()
         self.speed(0)
         self.color(color)
@@ -48,6 +49,22 @@ class Player(Turtle):
         if self.ycor() > 230 or self.ycor() < -230:
             self.setheading(-self.heading())
 
+    def fire(self):
+        self.bullets.append(Bullet(self))
+
+
+class Bullet(Turtle):
+    def __init__(self, player):
+        super().__init__()
+    self.hideturtle()
+    self.speed(0)
+    self.color(player.color)
+    self.setheading(player.heading())
+    self.penup()
+    self.goto(player.xcor(), player.ycor())
+    self.st()
+
+
 screen = Screen()
 screen.bgcolor("black")
 screen.setup(520,520)
@@ -64,5 +81,19 @@ while p1.alive and p2.alive:
     p1.move()
     p2.move()
 
+    for obj in turtles:
+        move_heading(obj, turtles)
+        if player!= None and player.distance(obj) < 20:
+            obj.hideturtle()
+            turtles.remove(obj)
+
+def detect_bullets(p1,p2):
+    if p1!= None and bullets.distance(obj)<20:
+        p1.color("yellow") 
+    elif p1.distance==bullets.distance and p1.color==yellow:
+        p1.color("red")
+    else:
+
+if
 
 screen.exitonclick()
