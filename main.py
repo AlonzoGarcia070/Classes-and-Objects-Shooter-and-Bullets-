@@ -84,6 +84,7 @@ p2 = Player(100,0,"blue",screen,"Right","Left", "Up")
 while p1.alive and p2.alive:
     p1.move()
     p2.move()
+<<<<<<< HEAD
     for bullet in p1.bullets:
         bullet.move()
         if bullet.distance(p2)<20:
@@ -126,6 +127,28 @@ while p1.alive and p2.alive:
             #     turtle.color("red")
             #     turtle.health-=1
            
+=======
+
+    for obj in turtles:
+        move_heading(obj, turtles)
+        if player!= None and player.distance(obj) < 20:
+            obj.hideturtle()
+            turtles.remove(obj)
+            turtle.health-=1
+
+    for bullet in turtles:
+        move_heading(bullet, turtles)
+        if player.health==3:
+            turtle.color(player.color)
+        if player.health==2 and player.distance(bullet) < 20:
+            turtle.color("yellow")
+        elif player.health==1 and player.distance(bullet) < 20:
+            turtle.color("red")
+        else:
+            alive=False
+            obj.hideturtle()
+            turtles.remove(bullet)
+>>>>>>> 6a0766269d674b2a7ebcf40851520f5a5a1b6296
 
 # def detect_bullets(p1,p2):
 #     if p1!= None and bullets.distance(obj)<20:
