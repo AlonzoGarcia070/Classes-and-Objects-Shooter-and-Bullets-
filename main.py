@@ -52,7 +52,6 @@ class Player(Turtle):
     def fire(self):
         self.bullets.append(Bullet(self))
 
-
 class Bullet(Turtle):
     def __init__(self, player):
         super().__init__()
@@ -67,13 +66,11 @@ class Bullet(Turtle):
     def move(self):
         self.forward(10)
 
-
 screen = Screen()
 screen.bgcolor("black")
 screen.setup(520,520)
 # Key Binding. Connects key presses and mouse clicks with function calls
 screen.listen()
-
 
 playing_area()
 
@@ -87,7 +84,9 @@ while p1.alive and p2.alive:
 <<<<<<< HEAD
     for bullet in p1.bullets:
         bullet.move()
-        if bullet.distance(p2)<20:
+        if bullet.distance(p2)>20:
+            pass
+        elif bullet.distance(p2)<20:
             bullet.hideturtle()
             p1.bullets.remove(bullet)
             p2.health-=1
@@ -98,11 +97,12 @@ while p1.alive and p2.alive:
         else:
             alive=False
             p2.hideturtle()
-            p2.remove(p2)
 
     for bullet in p2.bullets:
         bullet.move()
-        if bullet.distance(p1)<20:
+        if bullet.distance(p1)>20:
+            pass
+        elif bullet.distance(p1)<20:
             bullet.hideturtle()
             p2.bullets.remove(bullet)
             p1.health-=1
@@ -113,11 +113,7 @@ while p1.alive and p2.alive:
         else:
             alive=False
             p1.hideturtle()
-            p1.remove(p1)
-
-
-
-
+           
             # if player.health==3:
             #     turtle.color(player.color)
             # elif player.health==2 and player.distance(bullet) < 20:
@@ -156,7 +152,6 @@ while p1.alive and p2.alive:
 #     elif p1.distance==bullets.distance and p1.color==yellow:
 #         p1.color("red")
 #     else:
-
 # if
 
 screen.exitonclick()
