@@ -90,13 +90,14 @@ while p1.alive and p2.alive:
 
     for bullet in turtles:
         move_heading(bullet, turtles)
+        if player.health==3:
+            turtle.color(player.color)
         if player.health==2 and player.distance(bullet) < 20:
             turtle.color("yellow")
-        elif player.health==2 and player.distance(bullet) < 20:
-            turtle.color("red")
         elif player.health==1 and player.distance(bullet) < 20:
             turtle.color("red")
         else:
+            alive=False
             obj.hideturtle()
             turtles.remove(bullet)
 
