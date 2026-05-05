@@ -64,6 +64,9 @@ class Bullet(Turtle):
         self.goto(player.xcor(), player.ycor())
         self.st()
 
+    def move(self):
+        self.forward(10)
+
 
 screen = Screen()
 screen.bgcolor("black")
@@ -74,31 +77,55 @@ screen.listen()
 
 playing_area()
 
-p1 = Player(-100,0,"red",screen,"d","a", fire_key)
-p2 = Player(100,0,"blue",screen,"Right","Left")
+p1 = Player(-100,0,"red",screen,"d","a", "w")
+p2 = Player(100,0,"blue",screen,"Right","Left", "Up")
+
 
 while p1.alive and p2.alive:
     p1.move()
     p2.move()
-
-    for obj in turtles:
-        move_heading(obj, turtles)
-        if player!= None and player.distance(obj) < 20:
-            obj.hideturtle()
-            turtles.remove(obj)
-            turtle.health-=1
-
-    for bullet in turtles:
-        move_heading(bullet, turtles)
-        if player.health==2 and player.distance(bullet) < 20:
-            turtle.color("yellow")
-        elif player.health==2 and player.distance(bullet) < 20:
-            turtle.color("red")
-        elif player.health==1 and player.distance(bullet) < 20:
-            turtle.color("red")
+    for bullet in p1.bullets:
+        bullet.move()
+        if bullet.distance(p2)<20:
+            bullet.hideturtle()
+            p1.bullets.remove(bullet)
+            p2.health-=1
+        elif p2.health==2:
+            p2.color("yellow")
+        elif p2.health==1:
+            p2.color("red")
         else:
-            obj.hideturtle()
-            turtles.remove(bullet)
+            alive=False
+            p2.hideturtle()
+            p2.remove(p2)
+
+    for bullet in p2.bullets:
+        bullet.move()
+        if bullet.distance(p1)<20:
+            bullet.hideturtle()
+            p2.bullets.remove(bullet)
+            p1.health-=1
+        elif p1.health==2:
+            p1.color("yellow")
+        elif p1.health==1:
+            p1.color("red")
+        else:
+            alive=False
+            p1.hideturtle()
+            p1.remove(p1)
+
+
+
+
+            # if player.health==3:
+            #     turtle.color(player.color)
+            # elif player.health==2 and player.distance(bullet) < 20:
+            #     turtle.color("yellow")
+            #     turtle.health-=1
+            # elif player.health==2 and player.distance(bullet) < 20:
+            #     turtle.color("red")
+            #     turtle.health-=1
+           
 
 # def detect_bullets(p1,p2):
 #     if p1!= None and bullets.distance(obj)<20:
